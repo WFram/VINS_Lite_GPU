@@ -19,7 +19,7 @@ find_package(catkin REQUIRED COMPONENTS
 #find_package(OpenCV REQUIRED)
 #include(/home/dji/opencv/build/OpenCVConfig.cmake)
 #message(WARNING "OpenCV_VERSION: ${OpenCV_VERSION}")
-find_package(OpenCV 3.4.5 REQUIRED)
+find_package(OpenCV REQUIRED)
 find_package(Ceres REQUIRED)
 
 include_directories(${catkin_INCLUDE_DIRS} ${CERES_INCLUDE_DIRS})
