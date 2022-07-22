@@ -19,7 +19,7 @@ find_package(catkin REQUIRED COMPONENTS
 #find_package(OpenCV REQUIRED)
 #include(/home/dji/opencv/build/OpenCVConfig.cmake)
 #message(WARNING "OpenCV_VERSION: ${OpenCV_VERSION}")
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 3.4.5 REQUIRED PATHS /home/itmo/vins_lite_gpu/src/opencv-3.4.5/build)
 find_package(Ceres REQUIRED)
 
 include_directories(${catkin_INCLUDE_DIRS} ${CERES_INCLUDE_DIRS})
@@ -62,9 +62,9 @@ target_link_libraries(vins_lib ${OpenCV_LIBS} ${catkin_LIBRARIES}  ${CERES_LIBRA
 add_executable(vins_node src/rosNodeTest.cpp)
 target_link_libraries(vins_node vins_lib) 
 
-add_executable(kitti_odom_test src/KITTIOdomTest.cpp)
-target_link_libraries(kitti_odom_test vins_lib) 
+# add_executable(kitti_odom_test src/KITTIOdomTest.cpp)
+# target_link_libraries(kitti_odom_test vins_lib) 
 
-add_executable(kitti_gps_test src/KITTIGPSTest.cpp)
-target_link_libraries(kitti_gps_test vins_lib) 
+# add_executable(kitti_gps_test src/KITTIGPSTest.cpp)
+# target_link_libraries(kitti_gps_test vins_lib) 
 

@@ -95,45 +95,45 @@ CameraFactory::generateCamera( Camera::ModelType modelType, const std::string& c
 CameraPtr
 CameraFactory::generateCameraFromYamlFile( const std::string& filename )
 {
-    cv::FileStorage fs( filename, cv::FileStorage::READ );
+    // cv::FileStorage fs( filename, cv::FileStorage::READ );
 
-    if ( !fs.isOpened( ) )
-    {
-        return CameraPtr( );
-    }
+    // if ( !fs.isOpened( ) )
+    // {
+    //     return CameraPtr( );
+    // }
 
     Camera::ModelType modelType = Camera::MEI;
-    if ( !fs["model_type"].isNone( ) )
-    {
-        std::string sModelType;
-        fs["model_type"] >> sModelType;
+    // if ( !fs["model_type"].isNone( ) )
+    // {
+    //     std::string sModelType;
+    //     fs["model_type"] >> sModelType;
 
-        if ( boost::iequals( sModelType, "kannala_brandt" ) )
-        {
-            modelType = Camera::KANNALA_BRANDT;
-        }
-        else if ( boost::iequals( sModelType, "mei" ) )
-        {
-            modelType = Camera::MEI;
-        }
-        else if ( boost::iequals( sModelType, "scaramuzza" ) )
-        {
-            modelType = Camera::SCARAMUZZA;
-        }
-        else if ( boost::iequals( sModelType, "pinhole" ) )
-        {
-            modelType = Camera::PINHOLE;
-        }
-        else if ( boost::iequals( sModelType, "PINHOLE_FULL" ) )
-        {
-            modelType = Camera::PINHOLE_FULL;
-        }
-        else
-        {
-            std::cerr << "# ERROR: Unknown camera model: " << sModelType << std::endl;
-            return CameraPtr( );
-        }
-    }
+    //     if ( boost::iequals( sModelType, "kannala_brandt" ) )
+    //     {
+    //         modelType = Camera::KANNALA_BRANDT;
+    //     }
+    //     else if ( boost::iequals( sModelType, "mei" ) )
+    //     {
+    //         modelType = Camera::MEI;
+    //     }
+    //     else if ( boost::iequals( sModelType, "scaramuzza" ) )
+    //     {
+    //         modelType = Camera::SCARAMUZZA;
+    //     }
+    //     else if ( boost::iequals( sModelType, "pinhole" ) )
+    //     {
+    //         modelType = Camera::PINHOLE;
+    //     }
+    //     else if ( boost::iequals( sModelType, "PINHOLE_FULL" ) )
+    //     {
+    //         modelType = Camera::PINHOLE_FULL;
+    //     }
+    //     else
+    //     {
+    //         std::cerr << "# ERROR: Unknown camera model: " << sModelType << std::endl;
+    //         return CameraPtr( );
+    //     }
+    // }
 
     switch ( modelType )
     {

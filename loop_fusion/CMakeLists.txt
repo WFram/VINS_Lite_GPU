@@ -17,7 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 #find_package(OpenCV)
 #include(/home/dji/opencv/build/OpenCVConfig.cmake)
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 3.4.5 REQUIRED PATHS /home/itmo/vins_lite_gpu/src/opencv-3.4.5/build)
 
 find_package(Ceres REQUIRED)
 

@@ -144,40 +144,40 @@ PinholeCamera::Parameters::cy(void) const
 bool
 PinholeCamera::Parameters::readFromYamlFile(const std::string& filename)
 {
-    cv::FileStorage fs(filename, cv::FileStorage::READ);
+    // cv::FileStorage fs(filename, cv::FileStorage::READ);
 
-    if (!fs.isOpened())
-    {
-        return false;
-    }
+    // if (!fs.isOpened())
+    // {
+        // return false;
+    // }
 
-    if (!fs["model_type"].isNone())
-    {
-        std::string sModelType;
-        fs["model_type"] >> sModelType;
+    // if (!fs["model_type"].isNone())
+    // {
+    //     std::string sModelType;
+    //     fs["model_type"] >> sModelType;
 
-        if (sModelType.compare("PINHOLE") != 0)
-        {
-            return false;
-        }
-    }
+    //     if (sModelType.compare("PINHOLE") != 0)
+    //     {
+    //         return false;
+    //     }
+    // }
 
     m_modelType = PINHOLE;
-    fs["camera_name"] >> m_cameraName;
-    m_imageWidth = static_cast<int>(fs["image_width"]);
-    m_imageHeight = static_cast<int>(fs["image_height"]);
+    m_cameraName = "camera";
+    m_imageWidth = static_cast<int>(848);
+    m_imageHeight = static_cast<int>(480);
 
-    cv::FileNode n = fs["distortion_parameters"];
-    m_k1 = static_cast<double>(n["k1"]);
-    m_k2 = static_cast<double>(n["k2"]);
-    m_p1 = static_cast<double>(n["p1"]);
-    m_p2 = static_cast<double>(n["p2"]);
+    // cv::FileNode n = fs["distortion_parameters"];
+    m_k1 = static_cast<double>(-0.48926225);
+    m_k2 = static_cast<double>(0.24427961);
+    m_p1 = static_cast<double>(0.00315019);
+    m_p2 = static_cast<double>(0.00157773);
 
-    n = fs["projection_parameters"];
-    m_fx = static_cast<double>(n["fx"]);
-    m_fy = static_cast<double>(n["fy"]);
-    m_cx = static_cast<double>(n["cx"]);
-    m_cy = static_cast<double>(n["cy"]);
+    // n = fs["projection_parameters"];
+    m_fx = static_cast<double>(872.7057452735113);
+    m_fy = static_cast<double>(870.4691806271561);
+    m_cx = static_cast<double>(409.09626491970903);
+    m_cy = static_cast<double>(249.45576412551657);
 
     return true;
 }

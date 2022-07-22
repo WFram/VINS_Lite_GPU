@@ -305,6 +305,22 @@ map<int, vector<pair<int, Eigen::Matrix<double, 7, 1>>>> FeatureTracker::trackIm
                     cout << "mask is empty " << endl;
                 if (mask.type() != CV_8UC1)
                     cout << "mask type wrong " << endl;
+
+                // cv::cuda::printShortCudaDeviceInfo(cv::cuda::getDevice());
+                // int cuda_devices_number = cv::cuda::getCudaEnabledDeviceCount();
+                // cout << "CUDA Device(s) Number: "<< cuda_devices_number << endl;
+                // cv::cuda::DeviceInfo _deviceInfo;
+                // bool _isd_evice_compatible = _deviceInfo.isCompatible();
+                // cout << "CUDA Device(s) Compatible: " << _isd_evice_compatible << endl;
+
+
+                // TODO:    1) Check, if types of images are appropriate
+                //              The type is 0, which is 8UC1. Appropriate because of https://stackoverflow.com/questions/12335663/getting-enum-names-e-g-cv-32fc1-of-opencv-image-types
+                //          2) Play with parameters for GFTT
+                //               3, true, 0.04 - NO
+                //               exclude current size - NO
+                //          3) Try to use another feature detector
+
                 TicToc t_g;
                 cv::cuda::GpuMat cur_gpu_img(cur_img);
                 cv::cuda::GpuMat d_prevPts;
@@ -312,9 +328,10 @@ map<int, vector<pair<int, Eigen::Matrix<double, 7, 1>>>> FeatureTracker::trackIm
                 cv::cuda::GpuMat gpu_mask(mask);
                 // printf("gpumat cost: %fms\n",t_gg.toc());
                 cv::Ptr<cv::cuda::CornersDetector> detector = cv::cuda::createGoodFeaturesToTrackDetector(cur_gpu_img.type(), MAX_CNT - cur_pts.size(), 0.01, MIN_DIST);
-                // cout << "new gpu points: "<< MAX_CNT - cur_pts.size()<<endl;
+                cout << "new gpu points: "<< MAX_CNT - cur_pts.size()<<endl;
+                cout << "GPU image type: " << cur_gpu_img.type() << endl;
                 detector->detect(cur_gpu_img, d_prevPts, gpu_mask);
-                // std::cout << "d_prevPts size: "<< d_prevPts.size()<<std::endl;
+                std::cout << "d_prevPts size: "<< d_prevPts.size()<<std::endl;
                 if(!d_prevPts.empty())
                     n_pts = cv::Mat_<cv::Point2f>(cv::Mat(d_prevPts));
                 else

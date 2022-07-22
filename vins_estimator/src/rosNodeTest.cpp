@@ -202,15 +202,16 @@ int main(int argc, char **argv)
     ros::NodeHandle n("~");
     ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME, ros::console::levels::Info);
 
-    if(argc != 2)
-    {
-        printf("please intput: rosrun vins vins_node [config file] \n"
-               "for example: rosrun vins vins_node "
-               "~/catkin_ws/src/VINS-Fusion/config/euroc/euroc_stereo_imu_config.yaml \n");
-        return 1;
-    }
+    // if(argc != 2)
+    // {
+    //     printf("please intput: rosrun vins vins_node [config file] \n"
+    //            "for example: rosrun vins vins_node "
+    //            "~/catkin_ws/src/VINS-Fusion/config/euroc/euroc_stereo_imu_config.yaml \n");
+    //     return 1;
+    // }
 
-    string config_file = argv[1];
+    // string config_file = argv[1];
+    string config_file = "/home/itmo/vins_lite_gpu/src/VINS_Lite_GPU/config/imx477_mpu6050/imx477_mpu6050_config.yaml";
     printf("config_file: %s\n", argv[1]);
 
     readParameters(config_file);
